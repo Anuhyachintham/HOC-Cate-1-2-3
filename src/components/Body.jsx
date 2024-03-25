@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import Resturantcard from './Resturantcard'
+import Resturantcard, { withveglabel } from './Resturantcard'
 import Shimmer from './Shimmer'
 import "../App.css"
 import { Link } from 'react-router-dom'
@@ -11,6 +11,8 @@ const Body = () => {
  
   const[search,setSearch]=useState("");
   // const[dummyData,setDummyData]=useState([])
+
+  const ResturantCardVeg=withveglabel(Resturantcard);
 useEffect(()=>{
 fetchData()
 },[])
@@ -47,7 +49,9 @@ setRestlist(searchData)
 </div>
 <div className='Res-Cardinfo'>
 {restlist.map((item)=><Link className="custom-link" to={"./restutants/"+item.info.id}>
-  <Resturantcard key={item.info.id} resData={item}/></Link>)}
+ {item.info.veg?
+  (<ResturantCardVeg key={item.info.id} resData={item}/>):
+  (<Resturantcard key={item.info.id} resData={item}/>)}</Link>)}
 </div>
 
 </>

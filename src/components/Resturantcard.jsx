@@ -6,9 +6,9 @@ const Resturantcard = (props) => {
     console.log(props)
     // const image="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/"  
    
+    
     const{cloudinaryImageId,name,costForTwo,cuisines,avgRating}=props.resData.info
-  
-    return (
+ return (
   
   <div className='res-info'>
 <img className="image-logo" src={image+cloudinaryImageId} alt=""/>
@@ -19,6 +19,17 @@ const Resturantcard = (props) => {
 
     </div>
   )
+}
+
+
+export const withveglabel=(Resturantcard)=>{
+  return(props)=>{
+    
+    return(<div>
+<label className='veg-label'>veg</label>
+<Resturantcard {...props}/>
+    </div>)
+  }
 }
 
 export default Resturantcard
